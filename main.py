@@ -23,6 +23,18 @@ name = input("Enter your full name : ")
 print()
 age = input("Enter your current age : ")
 print()
+email=input("Enter a valid email address : " )
+print()
+
+def sendMail(to, content):
+    server = smtplib.SMTP('smtp.gmail.com',587)
+    server.ehlo()
+    server.startls()
+    server.login('email@gmail.com','password123') #login credentials of the account to sentd the mail through
+    server.sendmail('email@gamil.com',to,content)
+    server.stop
+
+
 w = float(input("Enter your weight : "))
 wtype = input("Is your weight in (K)g or (L)bs : ")
 
@@ -97,8 +109,13 @@ print("Age : ",age)
 print("BMI value : ",bmi)
 print("Value calculated : "+nvalue)
 print("Doctor's comment : "+comment)
-
+      
+if(sendMail(email,comment)):
+      print("the response has been sent to your mail box!)
+else:
+      print("Could not send the mail due to server issue..)
 print()
+            
 time.sleep(10)
 print("Thank you for using the script")
 print("Now pay our doctor's fee i.e. $120.99 LOL")
